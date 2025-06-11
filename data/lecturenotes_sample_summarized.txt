@@ -1,0 +1,36 @@
+Fingerprint web server: doing a request through Burp shows us that a server name and the language is returned.
+
+Review Webpage Content for Information Leakage: there are no metadata files or anything personal on the website.
+
+Identify application entry points: There are no entry points, the website came with an SQL script, but it probably would not remain in the same directory on an actual running website.
+
+Test File Extensions Handling for Sensitive Information: Able to access any file extension.
+
+Review Old Backup and Unreferenced Files for Sensitive Information: the project was downloaded from GitHub, it did not come with any backups.
+
+Enumerate Infrastructure and Application Admin Interfaces: There are no admin functionalities on the site.
+
+Test Role Definitions: only user role available.
+
+HTTP methods: the server seems to accept all HTTP requests (GET/POST/PUT/DELETE).
+
+Testing for Credentials Transported over an Encrypted Channel: the credentials are being passed in plain text in the requests and they are also saved in plain text in the database.
+
+Testing for Weak Password Policy: the policy requires 8 characters for a password, but that requirement can be technically bypassed if we change the password from the password change page.
+
+Testing Directory Traversal File Include: tried navigating to files outside the website's current directory (.../.../install.txt) and the server is giving a permission error in return.
+
+Testing for Bypassing Authorization Schema: the browser checks if the email is a valid email, but if sending the request through Burp the check no longer happens as the check is client-side.
+
+Testing for Session Management Schema: changing the session cookie when logged in seems to not have any effect, can still place orders even if the session cookie is changed; deleting the session cookie logs the user out.
+
+Testing for Logout Functionality: The session cookie does not change if logged in or out, it does not reset; deleting the cookie does log you out.
+
+Testing for Reflected Cross Site Scripting: we can make an account with an email such as "<script>alert();</script>" and log in by modifying the email input to type text; the script will execute on all pages when logged in.
+
+You can place an empty order by making one of the order items have a letter instead of a digit even though you’re not supposed to be able to place empty orders.
+
+Testing for SQL injection:
+- `'); UPDATE user SET password=123 WHERE email='e@e.ee'--`
+- `'); delete from user WHERE email='e@e.ee');--`
+- `','$email','$pw','$cpw');--`
