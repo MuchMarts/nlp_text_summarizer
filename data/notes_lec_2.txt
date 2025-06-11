@@ -1,0 +1,53 @@
+BRANCHING, ITERATION (download slides and .py files follow along!) 1 LAST TIME
+syntax and semantics
+scalar objects
+simple operations
+expressions, variables and values 2 TODAY
+string object type
+branching and conditionals
+indentation
+iteration and loops 3 STRINGS
+letters, special characters, spaces, digits
+enclose in quotation marks or single quotes hi = "hello there"
+concatenate strings name = "ana" greet = hi + name greeting = hi + " " + name
+do some operations on a string as defined in Python docs silly = hi + " " + name * 3 4 INPUT/OUTPUT: print
+used to output stuff to console
+keyword is print x = 1 print(x) x_str = str(x) print("my fav num is", x, ".", "x =", x) print("my fav num is " + x_str + ". " + "x = " + x_str) 5 INPUT/OUTPUT: input("")
+prints whatever is in the quotes
+user types in something and hits enter
+binds that value to a variable text = input("Type anything... ") print(5*text)
+input gives you a string so must cast if working with numbers num = int(input("Type a number... ")) print(5*num) 6 COMPARISON OPERATORS ON int, float, string
+i and j are variable names
+comparisons below evaluate to a Boolean i > j i >= j i < j i <= j i == j  equality test, True if i is the same as j i != j  inequality test, True if i not the same as j 7 LOGIC OPERATORS ON bools
+a and b are variable names (with Boolean values) not a  True if a is False False if a is True a and b  True if both are True a or b  True if either or both are True A B A and B A or B True True True True True False False True False True False True False False False False 8 COMPARISON EXAMPLE pset_time = 15 sleep_time = 8 print(sleep_time > pset_time) derive = True drink = False both = drink and derive print(both) 9 If right blocked, If right and If right , front, If right clear, go forward front blocked, left blocked, go right go left go back 10 CONTROL FLOW - BRANCHING if <condition>: if <condition>: <expression> <expression> <expression> <expression> ... ... elif <condition>: if <condition>: <expression> <expression> <expression> <expression> ... ... else: else: <expression> <expression> <expression> <expression> ... ...
+<condition> has a value True or False
+evaluate expressions in that block if <condition> is True 11 INDENTATION
+matters in Python
+how you denote blocks of code x = float(input("Enter a number for x: ")) y = float(input("Enter a number for y: ")) if x == y: pprriinntt((""xx aanndd yy aarree eeqquuaall"")) iiff yy !!== 00:: pprriinntt((""tthheerreeffoorree,, xx // yy iiss"",, xx//yy)) elif x < y: pprriinntt((""xx iiss ssmmaalllleerr"")) else: pprriinntt((""yy iiss ssmmaalllleerr"")) print("thanks!") 12 = vs == x = float(input("Enter a number for x: ")) y = float(input("Enter a number for y: ")) if x == y: print("x and y are equal") if y != 0: print("therefore, x / y is", x/y) elif x < y: print("x is smaller") else: print("y is smaller") print("thanks!") 13
+Legend of Zelda – Lost Woods
+keep going right, takes you back to this same screen, stuck in a loop Image Courtesy Nintendo, All Rights Reserved. This content is excluded from our Creative Commons license. For more information, see http://ocw.mit.edu/help/faq-fair-use/. if <exit right>: <<sseett bbaacckkggrroouunndd ttoo wwooooddss__bbaacckkggrroouunndd>> iiff <<eexxiitt rriigghhtt>>:: <<sseett bbaacckkggrroouunndd ttoo wwooooddss__bbaacckkggrroouunndd>> iiff <<eexxiitt rriigghhtt>>:: <<sseett bbaacckkggrroouunndd ttoo wwooooddss__bbaacckkggrroouunndd>> aanndd ssoo oonn aanndd oonn aanndd oonn...... eellssee:: <<sseett bbaacckkggrroouunndd ttoo eexxiitt__bbaacckkggrroouunndd>> eellssee:: <<sseett bbaacckkggrroouunndd ttoo eexxiitt__bbaacckkggrroouunndd>> else: <<sseett bbaacckkggrroouunndd ttoo eexxiitt__bbaacckkggrroouunndd>> 14
+Legend of Zelda – Lost Woods
+keep going right, takes you back to this same screen, stuck in a loop Word Cloud copyright unknown, All Right Reserved. This content is excluded from our Creative Commons license. For more information, see http://ocw.mit.edu/help/faq-fair-use/. while <exit right>: <<sseett bbaacckkggrroouunndd ttoo wwooooddss__bbaacckkggrroouunndd>> <set background to exit_background> 15 CONTROL FLOW: while LOOPS while <condition>: <expression> <expression> ...
+<condition> evaluates to a Boolean
+if <condition> is True, do all the steps inside the while code block
+check <condition> again
+repeat until <condition> is False 16 while LOOP EXAMPLE You are in the Lost Forest. ************ ************  ************ ************ Go left or right? PROGRAM: n = input("You're in the Lost Forest. Go left or right? ") while n == "right": n = input("You're in the Lost Forest. Go left or right? ") print("You got out of the Lost Forest!") 17 CONTROL FLOW: while and for LOOPS
+iterate through numbers in a sequence # more complicated with while loop n = 0 while n < 5: print(n) n = n+1 # shortcut with for loop for n in range(5): print(n) 18 CONTROL FLOW: for LOOPS for <variable> in range(<some_num>): <expression> <expression> ...
+each time through the loop, <variable> takes a value
+first time, <variable> starts at the smallest value
+next time, <variable> gets the prev value + 1
+etc. 19 range(start,stop,step)
+default values are start = 0 and step = 1 and optional
+loop until value is stop - 1 mysum = 0 for i in range(7, 10): mysum += i print(mysum) mysum = 0 for i in range(5, 11, 2): mysum += i print(mysum) 20 break STATEMENT
+immediately exits whatever loop it is in
+skips remaining expressions in code block
+exits only innermost loop! while <condition_1>: while <condition_2>: <expression_a> break <expression_b> <expression_c> 21 break STATEMENT mysum = 0 for i in range(5, 11, 2): mmyyssuumm ++== ii iiff mmyyssuumm ==== 55:: bbrreeaakk mysum += 1 print(mysum)
+what happens in this program? 22 for VS while LOOPS for loops while loops
+unbounded number of
+know number of iterations iterations
+can end early via break
+can end early via break
+can use a counter but must initialize before loop
+uses a counter and increment it inside loop
+can rewrite a for loop
+may not be able to using a while loop rewrite a while loop using a for loop 23 MIT OpenCourseWare https://ocw.mit.edu 6.0001 Introduction to Computer Science and Programming in Python Fall 2016 For information about citing these materials or our Terms of Use, visit: https://ocw.mit.edu/terms.

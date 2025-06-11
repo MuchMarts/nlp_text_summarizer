@@ -1,0 +1,86 @@
+PYTHON CLASSES and INHERITANCE (download slides and .py files follow along!) 1 LAST TIME
+abstract data types through classes
+Coordinate example
+Fraction example TODAY
+more on classes
+getters and setters
+information hiding
+class variables
+inheritance 2 IMPLEMENTING USING THE CLASS vs THE CLASS
+write code from two different perspectives implementing a new using the new object type in object type with a class code
+define the class
+create instances of the object type
+define data attributes (WHAT IS the object)
+do operations with them
+define methods (HOW TO use the object) 3 CLASS DEFINITION INSTANCE OF AN OBJECT TYPE vs OF A CLASS
+class name is the type
+instance is one specific object class Coordinate(object) coord = Coordinate(1,2)
+class is defined generically
+data attribute values vary between instances
+use to refer to some self instance while defining the c1 = Coordinate(1,2) class c2 = Coordinate(3,4)
+and have different data (self.x – self.y)**2 c1 c2 attribute values and
+is a parameter to c1.x c2.x self because they are different methods in class definition objects
+instance has the structure of
+class defines data and the class methods common across all instances 4 WHY USE OOP AND CLASSES OF OBJECTS?
+mimic real life
+group different objects part of the same type Image Credits, clockwise from top: Image Courtesy Harald Wehner, in the public Domain. Image Courtesy MTSOfan, CC-BY-NC-SA. Image Courtesy Carlos Solana, license CCBY-NC-SA. Image Courtesy Rosemarie Banghart-Kovic, license CC-BY-NC-SA. Image Courtesy Paul Reynolds, license CC-BY. Image Courtesy Kenny Louie, License CC-BY 5 WHY USE OOP AND CLASSES OF OBJECTS?
+mimic real life
+group different objects part of the same type Image Credits, clockwise from top: Image Courtesy Harald Wehner, in the public Domain. Image Courtesy MTSOfan, CC-BY-NC-SA. Image Courtesy Carlos Solana, license CCBY-NC-SA. Image Courtesy Rosemarie Banghart-Kovic, license CC-BY-NC-SA. Image Courtesy Paul Reynolds, license CC-BY. Image Courtesy Kenny Louie, License CC-BY 66..00000011 LLEECCTTUURREE 99 66 GROUPS OF OBJECTS HAVE ATTRIBUTES (RECAP)
+data attributes
+how can you represent your object with data?
+what it is
+for a coordinate: x and y values
+for an animal: age, name
+procedural attributes (behavior/operations/methods)
+how can someone interact with the object?
+what it does
+for a coordinate: find distance between two
+for an animal: make a sound 7 HOW TO DEFINE A CLASS (RECAP) class Animal(object): def __init__(self, age): self.age = age self.name = None myanimal = Animal(3) 8 GETTER AND SETTER METHODS class Animal(object): def __init__(self, age): self.age = age self.name = None def get_age(self): return self.age def get_name(self): return self.name def set_age(self, newage): self.age = newage def set_name(self, newname=""): self.name = newname def __str__(self): return "animal:"+str(self.name)+":"+str(self.age)
+getters and setters should be used outside of class to access data attributes 9 AN INSTANCE and DOT NOTATION (RECAP)
+instantiation creates an instance of an object a = Animal(3)
+dot notation used to access attributes (data and methods) though it is better to use getters and setters to access data attributes a.age a.get_age() 10 INFORMATION HIDING
+author of class definition may change data attribute variable names class Animal(object): def __init__(self, age): self.years = age def get_age(self): return self.years
+if you are accessing data attributes outside the class and class definition changes, may get errors
+outside of class, use getters and setters instead use a.get_age() NOT a.age
+good style
+easy to maintain code
+prevents bugs 11 PYTHON NOT GREAT AT INFORMATION HIDING
+allows you to access data from outside class definition print(a.age)
+allows you to write to data from outside class definition a.age = 'infinite'
+allows you to create data attributes for an instance from outside class definition a.size = "tiny"
+it’s not good style to do any of these! 12 DEFAULT ARGUMENTS
+default arguments for formal parameters are used if no actual argument is given def set_name(self, newname=""): self.name = newname
+default argument used here a = Animal(3) a.set_name() print(a.get_name())
+argument passed in is used here a = Animal(3) a.set_name("fluffy") print(a.get_name()) 13 HIERARCHIES Image Credits, clockwise from top: Image Courtesy Deeeep, CC-BY-NC. Image Image Courtesy MTSOfan, CC-BY-NC-SA. Image Courtesy Carlos Solana, license CC-BY-NC-SA. Image Courtesy Rosemarie Banghart-Kovic, license CC-BY-NC-SA. Image Courtesy Paul Reynolds, license CC-BY. Image Courtesy Kenny Louie, License CC-BY. Courtesy Harald Wehner, in the public Domain. 14 HIERARCHIES
+parent class (superclass) Animal
+child class (subclass)
+inherits all data Person Cat Rabbit and behaviors of parent class
+add more info
+add more behavior Student
+override behavior 15 INHERITANCE: PARENT CLASS class Animal(object): def __init__(self, age): self.age = age self.name = None def get_age(self): return self.age def get_name(self): return self.name def set_age(self, newage): self.age = newage def set_name(self, newname=""): self.name = newname def __str__(self): return "animal:"+str(self.name)+":"+str(self.age) 16 INHERITANCE: SUBCLASS class Cat(Animal): def speak(self): print("meow") def __str__(self): return "cat:"+str(self.name)+":"+str(self.age)
+add new functionality with speak()
+instance of type Cat can be called with new methods
+instance of type Animal throws error if called with Cat’s new method
+__init__ is not missing, uses the Animal version 17 WHICH METHOD TO USE?
+subclass can have methods with same name as superclass
+for an instance of a class, look for a method name in current class definition
+if not found, look for method name up the hierarchy (in parent, then grandparent, and so on)
+use first method up the hierarchy that you found with that method name 18 class Person(Animal): def __init__(self, name, age): Animal.__init__(self, age) self.set_name(name) self.friends = [] def get_friends(self): return self.friends def add_friend(self, fname): if fname not in self.friends: self.friends.append(fname) def speak(self): print("hello") def age_diff(self, other): diff = self.age - other.age print(abs(diff), "year difference") def __str__(self): return "person:"+str(self.name)+":"+str(self.age) 19 import random class Student(Person): def __init__(self, name, age, major=None): Person.__init__(self, name, age) self.major = major def change_major(self, major): self.major = major def speak(self): r = random.random() if r < 0.25: print("i have homework") elif 0.25 <= r < 0.5: print("i need sleep") elif 0.5 <= r < 0.75: print("i should eat") else: print("i am watching tv") def __str__(self): return "student:"+str(self.name)+":"+str(self.age)+":"+str(self.major) 20 CLASS VARIABLES AND THE Rabbit SUBCLASS
+class variables and their values are shared between all instances of a class class Rabbit(Animal): tag = 1 def __init__(self, age, parent1=None, parent2=None): Animal.__init__(self, age) self.parent1 = parent1 self.parent2 = parent2 self.rid = Rabbit.tag Rabbit.tag += 1
+tag used to give unique id to each new rabbit instance 21 Rabbit GETTER METHODS class Rabbit(Animal): tag = 1 def __init__(self, age, parent1=None, parent2=None): Animal.__init__(self, age) self.parent1 = parent1 self.parent2 = parent2 self.rid = Rabbit.tag Rabbit.tag += 1 def get_rid(self): return str(self.rid).zfill(3) def get_parent1(self): return self.parent1 def get_parent2(self): return self.parent2 22 WORKING WITH YOUR OWN TYPES def __add__(self, other): # returning object of same type as this class return Rabbit(0, self, other) recall Rabbit’s __init__(self, age, parent1=None, parent2=None)
+define + operator between two Rabbit instances
+define what something like this does: r4 = r1 + r2 where r1 and r2 are Rabbit instances
+r4 is a new Rabbit instance with age 0
+r4 has as one parent and as the other parent self other
+in __init__, parent1 and parent2 are of type Rabbit 23 SPECIAL METHOD TO COMPARE TWO Rabbits
+decide that two rabbits are equal if they have the same two parents def __eq__(self, other): parents_same = self.parent1.rid == other.parent1.rid \ and self.parent2.rid == other.parent2.rid parents_opposite = self.parent2.rid == other.parent1.rid \ and self.parent1.rid == other.parent2.rid return parents_same or parents_opposite
+compare ids of parents since ids are unique (due to class var)
+note you can’t compare objects directly
+for ex. with self.parent1 == other.parent1
+this calls the __eq__ method over and over until call it on None and gives an AttributeError when it tries to do None.parent1 24 OBJECT ORIENTED PROGRAMMING
+create your own collections of data
+organize information
+division of work
+access information in a consistent manner
+add layers of complexity
+like functions, classes are a mechanism for decomposition and abstraction in programming 25 MIT OpenCourseWare https://ocw.mit.edu 6.0001 Introduction to Computer Science and Programming in Python Fall 2016 For information about citing these materials or our Terms of Use, visit: https://ocw.mit.edu/terms.

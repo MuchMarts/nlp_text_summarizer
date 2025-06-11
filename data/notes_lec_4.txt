@@ -1,0 +1,79 @@
+DECOMPOSITION, ABSTRACTION, FUNCTIONS (download slides and .py files follow along!) 1 LAST TIME
+while loops vs for loops
+should know how to write both kinds
+should know when to use them
+guess-and-check and approximation methods
+bisection method to speed up programs 2 TODAY
+structuring programs and hiding details
+functions
+specifications
+keywords: return vs print
+scope 3 HOW DO WE WRITE CODE?
+so far…
+covered language mechanisms
+know how to write different files for each computation
+each file is some piece of code
+each code is a sequence of instructions
+problems with this approach
+easy for small-scale problems
+messy for larger problems
+hard to keep track of details
+how do you know the right info is supplied to the right part of code 4 GOOD PROGRAMMING
+more code not necessarily a good thing
+measure good programmers by the amount of functionality
+introduce functions
+mechanism to achieve decomposition and abstraction 5 EXAMPLE – PROJECTOR
+a projector is a black box
+don’t know how it works
+know the interface: input/output
+connect any electronic to it that can communicate with that input
+black box somehow converts image from input source to a wall, magnifying it
+ABSTRACTION IDEA: do not need to know how projector works to use it 6 EXAMPLE – PROJECTOR
+projecting large image for Olympics decomposed into separate tasks for separate projectors
+each projector takes input and produces separate output
+all projectors work together to produce larger image
+DECOMPOSITION IDEA: different devices work together to achieve an end goal 7 APPLY THESE CONCEPTS TO PROGRAMMING! 8 CREATE STRUCTURE with DECOMPOSITION
+in projector example, separate devices
+in programming, divide code into modules
+are self-contained
+used to break up code
+intended to be reusable
+keep code organized
+keep code coherent
+this lecture, achieve decomposition with functions
+in a few weeks, achieve decomposition with classes 9 SUPRESS DETAILS with ABSTRACTION
+in projector example, instructions for how to use it are sufficient, no need to know how to build one
+in programming, think of a piece of code as a black box
+cannot see details
+do not need to see details
+do not want to see details
+hide tedious coding details
+achieve abstraction with function specifications or docstrings 10 FUNCTIONS
+write reusable pieces/chunks of code, called functions
+functions are not run in a program until they are “called” or “invoked” in a program
+function characteristics:
+has a name
+has parameters (0 or more)
+has a docstring (optional but recommended)
+has a body
+returns something 11 HOW TO WRITE and CALL/INVOKE A FUNCTION def is_even( i ): """ Input: i, a positive int Returns True if i is even, otherwise False """ print("inside is_even") return i%2 == 0 is_even(3) 12 IN THE FUNCTION BODY def is_even( i ): """ Input: i, a positive int Returns True if i is even, otherwise False """ print("inside is_even") return i%2 == 0 13 VARIABLE SCOPE
+formal parameter gets bound to the value of actual parameter when function is called
+new scope/frame/environment created when enter a function
+scope is mapping of names to objects def f( x ): x = x + 1 print('in f(x): x =', x) return x x = 3 z = f( x ) 14 VARIABLE SCOPE def f( x ): Global scope f scope x = x + 1 Some f x print('in f(x): x =', x) 3 code return x x 3 x = 3 z = f( x ) z 15 VARIABLE SCOPE def f( x ): Global scope f scope x = x + 1 Some f x print('in f(x): x =', x) 4 code return x x 3 x = 3 z = f( x ) z 16 VARIABLE SCOPE def f( x ): Global scope f scope x = x + 1 Some f x print('in f(x): x =', x) 4 code return x x 3 returns 4 x = 3 z = f( x ) z 17 VARIABLE SCOPE def f( x ): Global scope x = x + 1 Some f print('in f(x): x =', x) code return x x 3 x = 3 z = f( x ) 4 z 18 ONE WARNING IF NO return STATEMENT def is_even( i ): """ Input: i, a positive int Does not return anything """ i%2 == 0
+Python returns the value None, if no return given
+represents the absence of a value 19 return vs. print
+return only has meaning
+print can be used outside inside a function functions
+only one return executed
+can execute many print inside a function statements inside a function
+code inside function but
+code inside function can be after return statement not executed after a print executed statement
+has a value associated with it, given to function
+has a value associated with caller it, outputted to the console 20 FUNCTIONS AS ARGUMENTS
+arguments can take on any type, even functions def func_a(): print 'inside func_a' def func_b(y): print 'inside func_b' return y def func_c(z): print 'inside func_c' return z() print func_a() print 5 + func_b(2) print func_c(func_a) 21 FUNCTIONS AS ARGUMENTS Global scope func_a scope def func_a(): Some func_a print 'inside func_a' code def func_b(y): Some func_b code print 'inside func_b' return y Some func_c code def func_c(z): print 'inside func_c' None returns None return z() print func_a() print 5 + func_b(2) print func_c(func_a) 22 FUNCTIONS AS ARGUMENTS Global scope func_b scope def func_a(): Some func_a y 2 print 'inside func_a' code def func_b(y): Some func_b code print 'inside func_b' return y Some func_c code def func_c(z): print 'inside func_c' None return z() print func_a() returns 2 7 print 5 + func_b(2) print func_c(func_a) 23 FUNCTIONS AS ARGUMENTS Global scope func_c scope def func_a(): Some func_a z func_a print 'inside func_a' code def func_b(y): Some func_b code print 'inside func_b' func_a scope return y Some func_c code def func_c(z): print 'inside func_c' None return z() returns None print func_a() 7 print 5 + func_b(2) returns None 24 print func_c(func_a) None SCOPE EXAMPLE
+inside a function, can access a variable defined outside
+inside a function, cannot modify a variable defined outside -- can using global variables, but frowned upon def f(y): def g(y): def h(y): x = 1 print(x) x += 1 x += 1 print(x + 1) print(x) x = 5 x = 5 h(x) x = 5 g(x) print(x) f(x) print(x) print(x) 25 SCOPE EXAMPLE
+inside a function, can access a variable defined outside
+inside a function, cannot modify a variable defined outside -- can using global variables, but frowned upon def f(y): def g(y): def h(y): x = 1 print(x) x += 1 x += 1 print(x) x = 5 x = 5 h(x) x = 5 g(x) print(x) f(x) print(x) print(x) 26 HARDER SCOPE EXAMPLE IMPORTANT and TRICKY! Python Tutor is your best friend to help sort this out! http://www.pythontutor.com/ 27 SCOPE DETAILS def g(x): Global scope def h(): g Some x = 'abc' code x = x + 1 print('g: x =', x) x 3 h() return x z x = 3 z = g(x) 28 SCOPE DETAILS def g(x): Global scope g scope def h(): g x Some 3 x = 'abc' code x = x + 1 Some print('g: x =', x) x h 3 code h() return x z x = 3 z = g(x) 29 SCOPE DETAILS def g(x): Global scope g scope def h(): g x Some 43 x = 'abc' code x = x + 1 Some print('g: x =', x) x h 3 code h() return x z x = 3 z = g(x) 30 SCOPE DETAILS def g(x): Global scope g scope h scope def h(): g x x Some 34 “abc” x = 'abc' code x = x + 1 Some print('g: x =', x) x h 3 code h() return x z returns None x = 3 z = g(x) 31 SCOPE DETAILS def g(x): Global scope g scope def h(): g x Some 4 x = 'abc' code x = x + 1 Some print('g: x =', x) x h 3 code h() return x None z x = 3 returns 4 z = g(x) 32 SCOPE DETAILS def g(x): Global scope def h(): g Some x = 'abc' code x = x + 1 print('g: x =', x) x 3 h() return x z 4 x = 3 z = g(x) 33 DECOMPOSITION & ABSTRACTION
+powerful together
+code can be used many times but only has to be debugged once! 34 MIT OpenCourseWare https://ocw.mit.edu 6.0001 Introduction to Computer Science and Programming in Python Fall 2016 For information about citing these materials or our Terms of Use, visit: https://ocw.mit.edu/terms.

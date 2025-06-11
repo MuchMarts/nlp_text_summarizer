@@ -19,7 +19,43 @@ files:
     summary: presentationnotes_summarized.txt
   - original: virtuallearningnotes.txt
     summary: virtuallearningnotes_summarized.txt
-  # To add more files, specify the original and summary file names in the smae format:
-  # - original: another_sample.txt
-  #   summary: another_sample_summarized.txt
-  
+  - original: transcript_lec_1.txt
+    summary: notes_lec_1.txt
+    type: compsci
+  - original: transcript_lec_2.txt
+    summary: notes_lec_2.txt
+    type: compsci
+  - original: transcript_lec_3.txt
+    summary: notes_lec_3.txt
+    type: compsci
+  - original: transcript_lec_4.txt
+    summary: notes_lec_4.txt
+    type: compsci
+  - original: transcript_lec_5.txt
+    summary: notes_lec_5.txt
+    type: compsci
+  - original: transcript_lec_6.txt
+    summary: notes_lec_6.txt
+    type: compsci
+  - original: transcript_lec_7.txt
+    summary: notes_lec_7.txt
+    type: compsci
+  - original: transcript_lec_8.txt
+    summary: notes_lec_8.txt
+    type: compsci
+  - original: transcript_lec_9.txt
+    summary: notes_lec_9.txt
+    type: compsci
+  - original: transcript_lec_10.txt
+    summary: notes_lec_10.txt
+    type: compsci
+  - original: transcript_lec_11.txt
+    summary: notes_lec_11.txt
+    type: compsci
+  - original: transcript_lec_12.txt
+    summary: notes_lec_12.txt
+    type: compsci
+ 
+# - original: another_sample.txt
+#   summary: another_sample_summarized.txt
+#   type: compsci
