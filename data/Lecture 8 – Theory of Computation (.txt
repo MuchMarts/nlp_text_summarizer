@@ -1,0 +1,156 @@
+Lecture 8 – Theory of Computation (18.404 / 6.840)
+
+Last Time:
+- Decision procedures for automata and grammars:
+  * DFA, NFA, &DFA, &'DFA, CFG, &CFG are decidable
+  * ATM is Turing-recognizable
+
+Today (Sipser §4.2):
+- ATM is undecidable
+- The diagonalization method
+- ATM is Turing-unrecognizable
+- The reducibility method
+- Other undecidable languages
+
+---
+
+Acceptance Problem for TMs:
+ATM = { ⟨M, w⟩ | M is a TM and M accepts w }
+
+Theorem: ATM is not decidable.
+→ Proof uses the diagonalization method.
+
+---
+
+The Size of Infinity:
+- Cantor’s idea (~1890s): compare infinite sets using 1-1 correspondences.
+- Defn: Sets A and B are the same size if there exists a bijective function f: A → B.
+  * Such a function is both injective and surjective.
+
+Examples:
+- ℕ (natural numbers) and ℤ (integers) are countable.
+- ℚ⁺ (positive rationals) are also countable.
+- A set is *countable* if it is finite or has the same size as ℕ.
+
+---
+
+ℚ⁺ arranged in grid:
+  1/1, 1/2, 1/3, ...
+  2/1, 2/2, 2/3, ...
+  3/1, 3/2, 3/3, ...
+
+Diagonal enumeration shows ℚ⁺ is countable.
+
+ℤ enumeration example:
+  ℕ: 1, 2, 3, 4, 5, ...
+  ℤ: 0, -1, 1, -2, 2, ...
+
+---
+
+ℝ is Uncountable (Diagonalization Proof):
+- Assume ℝ is countable → enumerate all real numbers.
+- Construct a new real number x by altering the nth digit of the nth number.
+- x is not in the list → contradiction.
+→ Therefore, ℝ is uncountable.
+
+---
+
+Corollaries:
+- Let L = the set of all languages over Σ. L is uncountable.
+- Σ* (all strings over Σ) is countable.
+- Let M = set of all Turing machines. M is countable (TMs can be encoded as strings).
+→ Since L is uncountable and M is countable, some languages are not decidable.
+
+---
+
+ATM is Undecidable:
+ATM = { ⟨M, w⟩ | M is a TM and M accepts w }
+
+Theorem: ATM is not decidable.
+
+Proof by contradiction:
+- Assume TM H decides ATM.
+- Construct TM D:
+  D = “On input ⟨M⟩:
+    1. Simulate H on ⟨M, M⟩.
+    2. If H accepts, reject.
+       If H rejects, accept.”
+
+→ D accepts ⟨M⟩ iff M does not accept M.
+→ Apply D to itself: D(⟨D⟩) leads to contradiction.
+→ Therefore, no such H exists. ATM is undecidable.
+
+---
+
+Check-in 8.2:
+Queue Automaton QA: like a PDA but uses a queue and is deterministic.
+QA = { ⟨Q, w⟩ | Q is a QA and Q accepts w }
+
+Is QA decidable?
+(a) Yes, because QA is like PDA and APDA is decidable.
+(b) No, because “yes” contradicts known results.
+(c) Not enough information.
+
+---
+
+ATM is T-unrecognizable:
+Theorem: If L and L̅ are both T-recognizable → L is decidable.
+
+Proof:
+Let TM A recognize L, TM B recognize L̅.
+Build TM D that decides L:
+  “On input w:
+    1. Run A and B on w in parallel.
+    2. If A accepts, accept.
+       If B accepts, reject.”
+
+Corollary:
+- Since ATM is T-recognizable but undecidable,
+  ATM complement is **not** T-recognizable.
+→ ATM is T-unrecognizable.
+
+---
+
+Check-in 8.3:
+Which closure properties apply to T-recognizable languages?
+- (a) Closed under union ✔
+- (b) Closed under intersection ✔
+- (c) Closed under complement ✘
+- (d) Closed under concatenation ✔
+- (e) Closed under star ✔
+
+---
+
+Reducibility Method:
+Used to prove undecidability by reducing known undecidable problems to new ones.
+
+Defn: HALT_TM = { ⟨M, w⟩ | M halts on input w }
+
+Theorem: HALT_TM is undecidable.
+
+Proof by contradiction:
+- Assume HALT_TM is decidable by TM R.
+- Build TM D to decide ATM:
+  D = “On input ⟨M, w⟩:
+    1. Use R to check if M halts on w.
+    2. If not, reject.
+       If yes, simulate M on w.
+    3. Accept if M accepts, reject otherwise.”
+
+→ This would decide ATM, contradicting its undecidability.
+→ Therefore, HALT_TM is also undecidable.
+
+---
+
+Quick Summary:
+1. ℕ and ℝ are not the same size → diagonalization method.
+2. ATM is undecidable.
+3. If L and L̅ are T-recognizable → L is decidable.
+4. ATM complement is not T-recognizable → ATM is T-unrecognizable.
+5. Introduced reducibility to prove HALT_TM is undecidable.
+
+---
+
+MIT OpenCourseWare  
+https://ocw.mit.edu  
+Course: 18.404J / 6.840J Theory of Computation – Fall 2020  
