@@ -1,0 +1,9 @@
+Vietnamese has a special unit called “tiếng” that corresponds at the same time to a syllable with respect to phonology, a morpheme with respect to morpho-syntax, and a word with respect to sentence constituent creation.
+
+The Vietnamese vocabulary contains simple words, which are monosyllabic; reduplicative words composed by phonetic reduplication; compound words composed by semantic coordination and by semantic subordination; complex words phonetically transcribed from foreign languages.
+
+The Vietnamese lexicon edited recently by the Vietnam Lexicography Center (Vietlex) contains 40,181 words and idioms, which are widely used in contemporary spoken language, newspapers and literature.
+
+6,303 syllables (about 81.55% of syllables) are words by themselves.
+
+Two-syllable words are the most frequent, consisting of nearly 71% of the vocabulary.
