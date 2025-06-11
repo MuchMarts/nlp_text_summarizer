@@ -1,0 +1,20 @@
+ATM (Acceptance Problem for Turing Machines):
+ATM = { ⟨M, w⟩ | M is a Turing Machine and M accepts w } is undecidable.
+
+Diagonalization Method:
+Used to prove that the set of real numbers (ℝ) is uncountable.
+Also used to prove that ATM is not decidable by constructing a machine D that leads to a contradiction.
+
+ℕ, ℤ, ℚ⁺ are countable; ℝ is uncountable.
+Σ* (all strings) is countable; the set of all languages is uncountable.
+
+Therefore, some languages are not decidable since there are more languages than Turing Machines.
+
+ATM is Turing-recognizable but its complement is not.
+If both a language and its complement are Turing-recognizable, the language is decidable.
+
+HALT_TM = { ⟨M, w⟩ | M halts on input w } is also undecidable (by reduction from ATM).
+
+Turing-recognizable languages:
+- Closed under union, intersection, concatenation, star.
+- Not closed under complement.
