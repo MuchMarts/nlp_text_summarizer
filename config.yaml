@@ -13,12 +13,8 @@ files:
     summary: transcript_sample_summarized.txt
   - original: vietnameselang.txt
     summary: vietnameselang_summarized.txt
-  - original: virtuallearningnotes.txt
-    summary: virtuallearningnotes_summarized.txt
   - original: presentationnotes.txt
     summary: presentationnotes_summarized.txt
-  - original: virtuallearningnotes.txt
-    summary: virtuallearningnotes_summarized.txt
   - original: transcript_lec_1.txt
     summary: notes_lec_1.txt
     type: compsci
