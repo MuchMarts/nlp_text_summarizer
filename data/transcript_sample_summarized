@@ -1,0 +1,11 @@
+I'm Justin. I'm your third instructor for 6.006. This is my first time with this course.
+
+We're going to pick up where we left off in our last lecture and continue on with a similar theme that we're going to see throughout our algorithms class here in 6.006.
+
+There's an object called an interface, which is just a program specification. It's just telling us that there's a collection of operations that we want to implement.
+
+What happens behind the scenes is something called a data structure, which is a way to actually, in some sense, implement an interface.
+
+Essentially, we have two different decisions to make when we choose an algorithm: one is making sure that the interface is correct for the problem, and the other is choosing an appropriate data structure.
+
+Today, in our lecture, we're concerned with one particular interface, which is called a set.
