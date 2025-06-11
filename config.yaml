@@ -17,7 +17,7 @@ files:
     summary: presentationnotes_summarized.txt
   - original: genderdisparities_notes.txt
     summary: genderdisparities_notes_summarized.txt
- - original: lecturenotes_sample.txt
+  - original: lecturenotes_sample.txt
     summary: lecturenotes_sample_summarized.txt
   - original: transcript_lec_1.txt
     summary: notes_lec_1.txt
