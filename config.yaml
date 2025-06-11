@@ -5,6 +5,10 @@ files:
     summary: lecture9_summarized.txt
   - original: lecture8.txt
     summary: lecture8_summarized.txt
+  - original: virtuallearningnotes.docx
+    summary: virtuallearningnotes_summarized.docx
+   - original: textreview_notes.docx
+    summary: textreview_notes_summarized.docx
   # To add more files, specify the original and summary file names in the smae format:
   # - original: another_sample.txt
   #   summary: another_sample_summarized.txt
