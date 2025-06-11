@@ -1,0 +1,62 @@
+Context-Free Grammars (CFGs):
+- A CFG is a 4-tuple (V, Σ, R, S):
+  - V: variables
+  - Σ: terminals
+  - R: rules (A → w where A ∈ V, w ∈ (V ∪ Σ)*)
+  - S: start variable
+- L(G) = { w ∈ Σ* | S ⇒* w }
+
+Example CFG:
+S → 0S1 | R
+R → ε
+→ Generates { 0ⁿ1ⁿ | n ≥ 0 }
+
+CFG Notation:
+- α ⇒ β: one-step derivation
+- α ⇒* β: zero or more steps
+
+Ambiguity:
+- A grammar is ambiguous if some string has multiple parse trees.
+- Example:
+  - G1 (unambiguous): respects operator precedence
+  - G2 (ambiguous): E → E+E | E×E | (E) | a
+
+Check-in:
+- CFG 90 is valid: B → 0B1 | ε
+- CFG 91 is invalid (left recursion, no terminal base)
+
+Pushdown Automata (PDAs):
+- Like NFAs but with a stack
+- PDA is a 6-tuple (Q, Σ, Γ, δ, q0, F):
+  - Q: states
+  - Σ: input alphabet
+  - Γ: stack alphabet
+  - δ: transition function (Q × Σε × Γε → P(Q × Γε))
+  - q0: start state
+  - F: accept states
+- PDAs are nondeterministic
+
+PDA Example for { 0ⁿ1ⁿ }:
+- Push 0s, pop for 1s, accept if stack empty at end
+
+PDA Example for { wwᴿ }:
+- Nondeterministically push half of input
+- Switch to pop and compare
+
+CFG → PDA Conversion:
+- Push start symbol
+- If variable: apply rule (push RHS)
+- If terminal: pop and match input
+- Accept if input consumed and stack empty
+
+Theorem:
+- A language is context-free ⇔ it is recognized by some PDA
+
+Check-in:
+Q: Are all regular languages context-free?
+A: Yes — regular ⊂ context-free
+
+Recap:
+- Defined CFGs and CFLs
+- Defined PDAs
+- Converted CFGs to PDAs
