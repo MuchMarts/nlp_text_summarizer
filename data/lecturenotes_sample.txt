@@ -1,0 +1,69 @@
+Fingerprint web server: doing a request through burp shows us that a server name and the language is returned
+Review Webserver Metafiles for Information Leakage:
+Review Webpage Content for Information Leakage: there are no metadata files or anything personal on the website
+Identify application entry points: There are no entry points, the website came with an sql script, but it probably would not remain in the same directory on an actual running website.
+Fingerprint Web Application Framework: website has no frameworks
+Test File Extensions Handling for Sensitive Information: Able to access any file extension
+Review Old Backup and Unreferenced Files for Sensitive Information: the project was downloaded from github, it did not come with any backups
+Enumerate Infrastructure and Application Admin Interfaces: There are no admin functionality on the site
+
+Test Role Definitions: only user role available
+Test User Registration Process: 
+- validity of email determined by format
+- does not guarantee secure password creation due to limitations of character restraints
+- 
+
+HTTP methods:
+- the server seems to accept all http requests(get/post/put/delete)
+- trying to place an order while logged in, then repeating the order placement after logging out seems to not place another order, so bypassing authorization doesnt seem possible.
+
+Testing for Weak or unenforced username policy:
+- there is no account enumeration as accounts do not have any ids attached to them
+
+Testing for Credentials Transported over an Encrypted Channel:
+the credentials are being passed in plain text in the requests and they are also saved in plain text in the database
+
+Testing for Default Credentials:
+the website does not have standard default credentials
+
+Testing for Browser Cache Weaknesses:
+the browser only stores the php session id and nothing else in the cookies/localstorage
+
+Testing for Weak Password Policy:
+the policy requires 8 characters for a password, but that requirement can be technically bypassed if we change the password from the password change page
+
+Testing Directory Traversal File Include:
+tried navigating to files outside the website's current directory(.../.../install.txt) and the server is giving a permission error in return
+
+Testing for Bypassing Authorization Schema:
+the browser checks if the email is a valid email, but if sending the request through BURP the check no longer happens as the check is client side
+
+Testing for Session Management Schema:
+changing the session cookie when logged in seems to not have any effect, can still place orders even if the session cookie is changed, deleting the session cookie logs the user out.
+
+Testing for Logout Functionality:
+The session cookie does not change if logged in or out, it does not reset in logging in or out, deleting the cookie does log you out
+
+
+Testing for Logout Functionality:
+The logout is performed with a query string parameter, it clears out some user_info session parameter
+
+
+Testing for Reflected Cross Site Scripting:
+from the previous discovery of being able to make an account using BURP, which ignores validations such as valid email and valid name, we can make an account with an email such as "<script>alert();</script>".
+In order to log in as this "email", we can change the HTML email input in the login form from type email to type text and successfully login with this email <script>alert();</script>.
+Because the website shows us our email when we are logged in(in the top right), it will trigger the script and show an alert box every time we open any page when logged in.
+
+
+you can place an empty order by making one of the order items have a letter instead of a digit even though youre not supposed to be able to place empty orders
+
+testing for SQL injection 
+
+'); UPDATE user SET `password`=123 WHERE `email`='e@e.ee'-- 
+
+'); delete from user where WHERE `email`='e@e.ee');--
+
+','$email','$pw','$cpw');-- 
+
+
+
