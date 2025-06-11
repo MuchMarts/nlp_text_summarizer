@@ -1,0 +1,36 @@
+OK. So it's a pleasure to see all of you guys. I'm Justin. I'm your third instructor for 6.006. This is my first time
+with this course. Although, of course, this is material that we all know and love in the computer science
+department. I'll admit, I find the prospect of teaching sorting to 400 people all at once is mildly, low key
+terrifying. But we're going to give it a shot. And hopefully, that will subside as the lecture goes on today, all
+right?
+So we're going to pick up where we left off in our last lecture and continue on with a similar theme that we're
+going to see throughout our algorithms class here in 6.006. I think Jason and colleagues have done a really great
+job of organizing this class around some interesting themes. And so I thought I'd start with just a tiny bit of
+review of some key vocabulary words.
+Incidentally, typically, I teach the intro graphics class, the geometry course. And last year, I got feedback that
+said I have serial killer handwriting. I'm not 100% sure what that means. But we're going to use the slides a tiny
+bit more than normal, just to make sure you guys can read. And when I'm writing on the board, at any point, if
+you can't tell what I wrote, it's definitely me and not you. So just let me know.
+But in any event, in 6.006, all the way back in our lecture 1-- I know that was a long time ago-- we introduced two
+big keywords that are closely related, but not precisely the same. Hopefully, I've gotten this right. But roughly,
+there's a theme here which is that there's an object called an interface, which is just a program specification. It's
+just telling us that there's a collection of operations that we want to implement.
+So for example, a set, as we're going to see today, is like a big pile of things. And behind the scenes, how I
+choose to implement it can affect the runtime and how efficient my set is. But the actual way that I interact with
+it is the same, whether I use an unsorted array, a sorted array, what have you.
+On the other hand, what happens behind the scenes is something called a data structure, which is a way to
+actually, in some sense, implement an interface. So this is the object that on my computer is actually storing the
+information and implementing the set of operations that I've laid out in my interface. And so this sort of
+distinction, I think, is a critical theme in this course because, for instance, in the first couple weeks, we're going
+to talk about many different ways to implement a set. I'm going to see that there's a bunch of tradeoffs. Some of
+them are really fast for certain operations and slow for others.
+And so essentially, we have two different decisions to make when we choose an algorithm. One is making sure
+that the interface is correct for the problem that we're concerned with. And the other is choosing an appropriate
+data structure whose efficiency, and memory usage, and so on aligns with the priorities that we have for the
+application we have in mind. So hopefully, this high level theme makes sense. And really, spiritually, I think this
+is the main message to get out of this course in the first couple of weeks, even though these O's, and thetas, and
+so on are easy to lose the forest through the trees.
+In any event, today, in our lecture, we're concerned with one particular interface, which is called a set. A set is
+exactly what it sounds like. It's a big pile of things. And so a set interface is like an object that just you can keep
+adding things to it. And then querying inside of my set, is this object here? Can I find it? And then maybe I
+associate with my objects in my set different information.
