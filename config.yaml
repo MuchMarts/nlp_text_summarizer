@@ -1,10 +1,6 @@
 files: 
   - original: sample.txt
     summary: sample_summarized.txt
-  - original: lecture9.txt
-    summary: lecture9_summarized.txt
-  - original: lecture8.txt
-    summary: lecture8_summarized.txt
   - original: transcript_sample.txt
     summary: transcript_sample_summarized.txt
   - original: vietnameselang.txt
@@ -15,42 +11,7 @@ files:
     summary: genderdisparities_notes_summarized.txt
   - original: lecturenotes_sample.txt
     summary: lecturenotes_sample_summarized.txt
-  - original: transcript_lec_1.txt
-    summary: notes_lec_1.txt
-    type: compsci
-  - original: transcript_lec_2.txt
-    summary: notes_lec_2.txt
-    type: compsci
-  - original: transcript_lec_3.txt
-    summary: notes_lec_3.txt
-    type: compsci
-  - original: transcript_lec_4.txt
-    summary: notes_lec_4.txt
-    type: compsci
-  - original: transcript_lec_5.txt
-    summary: notes_lec_5.txt
-    type: compsci
-  - original: transcript_lec_6.txt
-    summary: notes_lec_6.txt
-    type: compsci
-  - original: transcript_lec_7.txt
-    summary: notes_lec_7.txt
-    type: compsci
-  - original: transcript_lec_8.txt
-    summary: notes_lec_8.txt
-    type: compsci
-  - original: transcript_lec_9.txt
-    summary: notes_lec_9.txt
-    type: compsci
-  - original: transcript_lec_10.txt
-    summary: notes_lec_10.txt
-    type: compsci
-  - original: transcript_lec_11.txt
-    summary: notes_lec_11.txt
-    type: compsci
-  - original: transcript_lec_12.txt
-    summary: notes_lec_12.txt
-    type: compsci
+  
  
 # - original: another_sample.txt
 #   summary: another_sample_summarized.txt
